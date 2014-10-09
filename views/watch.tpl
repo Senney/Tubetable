@@ -16,6 +16,18 @@
                     <!-- The youtube player will go here -->
                 </div>
             </div>
+
+            <div class="row">
+                <button class="btn btn-primary" onclick="playNext()">Skip</button>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <ul class="list-group" id="queue">
+
+                </ul>
+            </div>
         </div>
     </body>
 </html>

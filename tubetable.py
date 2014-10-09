@@ -82,7 +82,7 @@ class Tubetable(object):
         redirect('/')
 
     def list(self):
-        return json.dumps(self._videos)
+        return json.dumps(list(self._videos))
 
     def head(self):
         if len(self._videos) > 0:
