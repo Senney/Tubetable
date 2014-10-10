@@ -15,14 +15,14 @@
 
             <h3>Queue</h3>
             <div class="row">
-                <form action="/enqueue" method="POST" role="form">
+                <form action="/enqueue" method="POST" role="form" id="queueForm">
                     <div class="control-group">
                         <div class="col-md-4 col-md-offset-3">
                             <input type="text" class="form-control" id="video_id" name="video_id"
                                    placeholder="Youtube Video ID">
                         </div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button onclick="enqueueVideo(); return false;" class="btn btn-success">Submit</button>
                         </div>
                     </div>
                 </form>

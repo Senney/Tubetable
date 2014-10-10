@@ -96,5 +96,6 @@ function playNext() {
 
 function enqueueVideo() {
     vid = $("#video_id").val()
-    $.post('/enqueue', { video_id: vid });
+    $("#video_id").reset();
+    $.post('/enqueue', $("#queueForm").serialize());
 }
