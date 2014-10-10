@@ -2,6 +2,7 @@
     <head>
         <script src="/static/js/jquery-2.1.1.min.js"></script>
         <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/tubecontrol.js"></script>
         <script src="/static/js/tubetable.js"></script>
         <link rel="stylesheet" href="/static/css/bootstrap.min.css">
         <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">

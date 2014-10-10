@@ -4,6 +4,10 @@
         <script src="/static/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/static/css/bootstrap.min.css">
         <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+        <script src="/static/js/tubecontrol.js"></script>
+        <script>
+            $(function() { setInterval(getVideoList, 1500); });
+        </script>
     </head>
     <body>
         <div class="container">
@@ -26,7 +30,7 @@
             <hr>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <ul class="list-group">
+                    <ul class="list-group" id="queue">
 
                     </ul>
                 </div>
