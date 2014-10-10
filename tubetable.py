@@ -22,6 +22,8 @@ class Tubetable(object):
 
         #self._videos = deque(['AhbBo-209go', 'B-dUekPt5s8', 'dpyiew3kpz8'])
         self._videos = deque(['B-dUekPt5s8'])
+        self._current = None
+
         self._app = Bottle()
         self._build_routes()
         self.log.info("Finished initializing Tubetable.")
@@ -41,6 +43,7 @@ class Tubetable(object):
         self._app.route('/head', method='GET', callback=self.head)
         self._app.route('/host', method='GET', callback=self.host)
         self._app.route('/list', method='GET', callback=self.list)
+        self._app.route('/current', method='GET', callback=lambda: json.dumps(self._current))
 
     def _generate_host_key(self):
         self._host_key = "{}+{}".format(request.environ['REMOTE_ADDR'], random.randint(10000,99999))
@@ -71,8 +74,14 @@ class Tubetable(object):
         # fail?
         return None
 
+    def _is_host(self):
+        if self._host_key is not None and \
+           self._host_key == request.get_cookie('host-key', secret=self._secret):
+            return True
+        return False
+
     def index(self):
-        return template("index.tpl", host_key = self._host_key)
+        return template("index.tpl", host_key=self._host_key)
 
     def queue(self):
         video_id = self._get_youtube_id(request.forms.get('video_id'))
@@ -86,8 +95,10 @@ class Tubetable(object):
 
     def head(self):
         if len(self._videos) > 0:
-            return json.dumps(self._videos.popleft())
+            self._current = self._videos.popleft()
+            return json.dumps(self._current)
         else:
+            self._current = None
             response.status = 404
 
     def host(self):
