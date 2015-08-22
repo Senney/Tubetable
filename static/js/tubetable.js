@@ -23,7 +23,7 @@ function onYouTubeIframeAPIReady() {
         });
     });
 
-    setInterval(getVideoList, 1500);
+    setInterval(getVideoList, 10000);
 }
 
 function onPlayerReady(event) {

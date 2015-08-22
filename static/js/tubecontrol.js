@@ -15,7 +15,7 @@ function getNext(callback) {
             setTimeout(function() {
                 inWaiting = false;
                 getNext(callback);
-            }, 1500);
+            }, 5000);
         }
         inWaiting = true;
     });
@@ -64,10 +64,10 @@ function getVideoName(id, callback) {
     name = "No video name found.";
     cache[id] = "Pending";
     $.ajax({
-        url: "https://gdata.youtube.com/feeds/api/videos/" + id + "?v=2&alt=json",
+        url: "https://www.googleapis.com/youtube/v3/videos?part=snippet&id="+id+"&key=AIzaSyBzQ0qIlZ6ZNcmSXGZKD-2z_LQjZK0dpcQ",
         dataType: 'json'
     }).success(function(data) {
-        name = data['entry']['title']['$t'];
+        name = data['items']['0']['snippet']['title'];
         callback(name);
         cache[id] = name;
     }).fail(function() {

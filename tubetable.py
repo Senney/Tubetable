@@ -113,5 +113,5 @@ class Tubetable(object):
 
 
 if __name__ == "__main__":
-    app = Tubetable()
+    app = Tubetable(addr='0.0.0.0')
     app.start()
