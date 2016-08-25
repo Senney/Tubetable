@@ -1,0 +1,12 @@
+<h1>{{title}}</h1>
+<video-view [video]='selectedVideo'></video-view>
+
+<h2>Queued Videos</h2>
+<ul class='videos'>
+    <li *ngFor="let video of videos" (click)="onSelect(video)"
+        [class.selected]="video == selectedVideo">
+        <span class="badge">{{video.source_user}}</span>
+        <span class="videoName">{{video.name}}</span>
+        <span class="badge badge-actions">X ✓</span>
+    </li>
+</ul>
