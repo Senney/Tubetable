@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
 
+import { VideoService } from './video.service';
 import { QueuedVideo } from './queued-video';
 
-// Temporary hard-coding of the videos
-const VIDEO_QUEUE: QueuedVideo[] = [
-    {id: 1, name: 'Morrowind Tim Allen', video_id: 'NF-XMtNEudQ', source_user: 'Senney'},
-    {id: 2, name: 'Chihuahua fail', video_id: 'DLKSb7f6BUc', source_user: 'Senney'},
-    {id: 3, name: 'ハムマリオ', video_id: 'T9-dXJl2I0s', source_user: 'Senney'},
-    {id: 4, name: '1-Minute Hollandaise', video_id: 'rOWzVV_XrcM', source_user: 'Senney'},
-];
 
 @Component({
     selector: 'my-app',
+    providers: [VideoService],
     template: `
         <h1>{{title}}</h1>
         <video-view [video]='selectedVideo'></video-view>
@@ -89,12 +85,24 @@ const VIDEO_QUEUE: QueuedVideo[] = [
         }
     `]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'TubeTable';
-    videos = VIDEO_QUEUE;
+    videos: QueuedVideo[];
     selectedVideo: QueuedVideo;
+
+    // Inject the Video service.
+    constructor(private videoService: VideoService) { }
+
+    ngOnInit(): void {
+        this.getVideos();
+    }
 
     onSelect(video: QueuedVideo): void {
         this.selectedVideo = video;
+    }
+
+    getVideos(): void {
+        // Resolve the promise and store as a property.
+        this.videoService.getVideos().then(videos => this.videos = videos);
     }
 }
