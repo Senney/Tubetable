@@ -18,7 +18,7 @@ export class VideoService {
     getVideos(): Promise<QueuedVideo[]> {
         return this.http.get(this.dataUrl)
                    .toPromise()
-                   .then(response => response.json().data as QueuedVideo[])
+                   .then(response => response.json() as QueuedVideo[])
                    .catch(this.handleError);
     }
 
